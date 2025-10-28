@@ -41,6 +41,9 @@ public abstract class Character : MonoBehaviour
             return false;
         }
     }
+
+
+
     void Start()
     {
         
