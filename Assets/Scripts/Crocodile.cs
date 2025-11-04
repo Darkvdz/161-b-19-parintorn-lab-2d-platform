@@ -14,7 +14,7 @@ public class Crocodile : Enemy, IShootable
 
     void Start()
     {
-        base.Init(50);
+        base.Init(150);
         DamageHit = 30;
 
         atkRange = 6.0f;
@@ -51,7 +51,7 @@ public class Crocodile : Enemy, IShootable
             rock.InitWeapon(30, this);
             WaitTime = 0.0f;
         }
-        //Debug.Log($"{player.name} shoots rock to the {player.name}");
+        Debug.Log($"{name} shoots rock to the {player.name},deal damages {DamageHit}");
     }
 
     // Update is called once per frame

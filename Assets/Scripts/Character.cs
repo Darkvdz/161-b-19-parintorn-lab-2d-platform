@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public abstract class Character : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public abstract class Character : MonoBehaviour
         set => health = (value < 0) ? 0 : value; 
     }
     
+    public Slider slider;
+    
     protected Animator anim;
     protected Rigidbody2D rb;
 
@@ -17,13 +20,27 @@ public abstract class Character : MonoBehaviour
     {
         Health = startHealth;
         Debug.Log($"{this.name} is initialize Health : {this.Health}");
+        
+        if (slider != null)
+        {
+            slider.maxValue = startHealth;
+            slider.value = Health;
+        }
+        
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        
     }
 
     public void TakeDamage(int damage)
     {
         Health -= damage;
+        if (slider != null)
+        {
+            slider.value = Health;
+            print(Health);
+        }
+        
         Debug.Log($"{this.name} took {damage} damage, Current Health: {Health}");
 
         Isdead();
@@ -46,7 +63,9 @@ public abstract class Character : MonoBehaviour
 
     void Start()
     {
-        
+        /*Health = maxHealth;
+        slider.maxValue = maxHealth;
+        slider.value = Health;*/
     }
 
     // Update is called once per frame
