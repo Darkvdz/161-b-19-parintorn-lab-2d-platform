@@ -10,7 +10,7 @@ public abstract class Character : MonoBehaviour
         set => health = (value < 0) ? 0 : value; 
     }
     
-    public Slider slider;
+    public Slider hpSlider;
     
     protected Animator anim;
     protected Rigidbody2D rb;
@@ -21,10 +21,10 @@ public abstract class Character : MonoBehaviour
         Health = startHealth;
         Debug.Log($"{this.name} is initialize Health : {this.Health}");
         
-        if (slider != null)
+        if (hpSlider != null)
         {
-            slider.maxValue = startHealth;
-            slider.value = Health;
+            hpSlider.maxValue = startHealth;
+            hpSlider.value = Health;
         }
         
         rb = GetComponent<Rigidbody2D>();
@@ -35,9 +35,9 @@ public abstract class Character : MonoBehaviour
     public void TakeDamage(int damage)
     {
         Health -= damage;
-        if (slider != null)
+        if (hpSlider != null)
         {
-            slider.value = Health;
+            hpSlider.value = Health;
             print(Health);
         }
         
